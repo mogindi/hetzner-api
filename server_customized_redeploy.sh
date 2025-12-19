@@ -58,10 +58,22 @@ set -x
 
 mdadm --remove /dev/md/*
 mdadm --stop /dev/md/*
+mdadm --remove /dev/md*
+mdadm --stop /dev/md*
 wipefs -fa /dev/sd*
+wipefs -fa /dev/nvme*
 
 cat > yggdrasil_install <<EOT
 DRIVE1 /dev/sda
+DRIVE2 /dev/sdb
+DRIVE3 /dev/sdc
+DRIVE4 /dev/sdd
+FORMATDRIVE1 1
+FORMATDRIVE2 0
+FORMATDRIVE3 0
+FORMATDRIVE4 0
+SWRAID 0
+SWRAIDLEVEL 1
 BOOTLOADER grub
 HOSTNAME hyper
 PART swap swap 2G
@@ -70,7 +82,8 @@ PART /     ext4 all
 IMAGE /root/.oldroot/nfs/images/Ubuntu-2204-jammy-amd64-base.tar.gz
 EOT
 
-/root/.oldroot/nfs/install/installimage -c yggdrasil_install -a 
+/root/.oldroot/nfs/install/installimage -c yggdrasil_install -a
+
 EOF
 
 echo $server_number: Rebooting into main OS..
