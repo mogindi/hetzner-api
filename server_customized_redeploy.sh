@@ -86,6 +86,7 @@ EOT
 
 EOF
 
+
 echo $server_number: Rebooting into main OS..
 curl -u "$USERNAME":"$PASSWORD" https://robot-ws.your-server.de/reset/$server_number \
 	-d type=hw \
@@ -93,12 +94,6 @@ curl -u "$USERNAME":"$PASSWORD" https://robot-ws.your-server.de/reset/$server_nu
 
 sleep 10
 
-## We wait for it NOT BE REACHABLE (another reboot)
-#
-#while (curl -m 5 $ip:$port -s -v 2>&1 | grep -q "Connected to"); do
-#        echo "$server_number: Succeeded tcp connection to $ip:$port, but its probably still in rescue mode. Waiting.."
-#        sleep 5
-#done
 
 
 # We wait for ssh to be reachable (redeployment complete)
