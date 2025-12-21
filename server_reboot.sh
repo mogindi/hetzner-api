@@ -20,7 +20,8 @@ sleep 10
 
 
 # We wait for ssh to be reachable (redeployment complete)
-
+ip=$(curl -u "$USERNAME":"$PASSWORD" https://robot-ws.your-server.de/server/$server_number -s | jq .server.ip[0] -r)
+port=22
 while ! (curl -m 5 $ip:$port -s -v 2>&1 | grep -q "Connected to"); do
         echo "$server_number: Failed tcp connection to $ip:$port. Trying again.."
         sleep 5
