@@ -76,7 +76,7 @@ SWRAID 0
 SWRAIDLEVEL 1
 BOOTLOADER grub
 HOSTNAME hyper
-PART swap swap 2G
+#PART swap swap 2G
 PART /boot ext3 1024M
 PART /     ext4 all
 IMAGE /root/.oldroot/nfs/images/Ubuntu-2204-jammy-amd64-base.tar.gz
